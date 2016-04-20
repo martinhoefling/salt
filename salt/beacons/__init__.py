@@ -87,8 +87,11 @@ class Beacon(object):
                     if is_running:
                         log.info('Skipping beacon {0}. State run in progress.'.format(mod))
                         continue
+                fun = fun_str
+                if self._determine_beacon_config(current_beacon_config, 'beacon_function'):
+                   fun = self._determine_beacon_config(current_beacon_config, 'beacon_function')
                 # Fire the beacon!
-                raw = self.beacons[fun_str](b_config[mod])
+                raw = self.beacons[fun](b_config[mod])
                 for data in raw:
                     tag = 'salt/beacon/{0}/{1}/'.format(self.opts['id'], mod)
                     if 'tag' in data:
@@ -112,14 +115,14 @@ class Beacon(object):
 
     def _determine_beacon_config(self, current_beacon_config, key):
         '''
-        Process a beacon configuration to determine its interval
+        Process a beacon configuration to determine its value
         '''
 
-        interval = False
+        value = False
         if isinstance(current_beacon_config, dict):
-            interval = current_beacon_config.get(key, False)
+            value = current_beacon_config.get(key, False)
 
-        return interval
+        return value
 
     def _process_interval(self, mod, interval):
         '''
