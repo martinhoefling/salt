@@ -45,3 +45,14 @@ A Salt Demo using Vagrant.
 
 https://github.com/UtahDave/salt-vagrant-demo
 
+Molten Salt UI
+==============
+Molten is a WebUI for the REST API exposed by Saltstack. It's written using React and Redux and can be easily tried out in using Vagrant.
+
+https://github.com/martinhoefling/molten
+
+Saltbeat
+========
+Salt Beat to forward all events on the master event bus to Logstash or elasticsearch using the beat protocol. It's written in go and supports all options of the libbeat implementation.
+
+https://github.com/martinhoefling/saltbeat
